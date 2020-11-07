@@ -7,13 +7,67 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="hexo博客本地部署流程一年前用hexo部署过博客，由于其他事情导致长时间未使用，后来又尝试了wordpress与typecho，但个人比较喜欢修改主题样式，感觉wordpress与typecho的封装性太强，于是又回来继续使用hexo。记录自己重新部署hexo的过程，更新以前的部署笔记，故有的时间显示为2019年，但流程都是一样的。  本地部署过程需要安装的东西：git、Node.js、hexo">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2020/11/07/hexo%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="hexo博客本地部署流程一年前用hexo部署过博客，由于其他事情导致长时间未使用，后来又尝试了wordpress与typecho，但个人比较喜欢修改主题样式，感觉wordpress与typecho的封装性太强，于是又回来继续使用hexo。记录自己重新部署hexo的过程，更新以前的部署笔记，故有的时间显示为2019年，但流程都是一样的。  本地部署过程需要安装的东西：git、Node.js、hexo">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030720.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030722.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030724.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030721.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030723.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030725.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030726.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030740.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030727.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030728.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030737.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030729.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030731.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030730.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030732.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030733.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030735.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030734.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030736.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030738.png">
+<meta property="og:image" content="c:/Users/SuperZhang/AppData/Roaming/Typora/typora-user-images/image-20201107163932172.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030742.png">
+<meta property="og:image" content="c:/Users/SuperZhang/AppData/Roaming/Typora/typora-user-images/image-20201107164105344.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030746.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030744.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030743.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030745.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030748.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030747.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030809.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030750.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030751.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030800.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030749.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030752.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030755.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030757.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030754.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030753.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030756.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030759.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030758.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030802.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030804.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030805.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030803.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030807.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030806.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030808.png">
+<meta property="article:published_time" content="2020-11-07T09:27:54.691Z">
+<meta property="article:modified_time" content="2020-11-07T11:26:55.250Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/lluuiq/blog_img/img/20200324030720.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,76 +116,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Hexo-使用注意事项" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/Hexo-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
-  <time datetime="2020-11-07T11:24:58.000Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/07/Hexo-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Hexo 使用注意事项</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><p>最好是用命令行来新建文章，否则会报一些奇奇怪怪的错误<br>也就是说，每个文章的开头，都要把标题，时间 等等信息填充好。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/Hexo-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="ckh7lu3t80000zwvrdfng96sj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hexo页面属性设置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/Hexo%E9%A1%B5%E9%9D%A2%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" class="article-date">
-  <time datetime="2020-11-07T11:11:11.835Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="hexo创建各种页面问题"><a href="#hexo创建各种页面问题" class="headerlink" title="hexo创建各种页面问题"></a>hexo创建各种页面问题</h1><p>1，创建一般的文章：hexo new “文章名称”<br> 2，创建”关于我”等页面：hexo new page “about”这里的about要和在主题的_config.yml文件中的menu中进行匹配<br> 如：menu:<br> Home: /<br> Archives: /archives<br> About: /about<br> 那创建关于我的页面：hexo new page “about” 在编辑创建出来的md文件，然后部署就能看到<br> 3，创建友情链接：在主题的配置中：<br> links_title: 友情链接<br> links:<br> CSDN: <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://blog.csdn.net/u012900536">http://blog.csdn.net/u012900536</a><br> 4，打赏链接：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 打赏</span><br><span class="line"># reward_comment: 您的支持将鼓励我继续创作！</span><br><span class="line"># wechatpay: &#x2F;images&#x2F;wechat-reward-image.JPG</span><br></pre></td></tr></table></figure>
-
-<p>5，设置网站信息：<br> title: 标题<br> subtitle: 副标题<br> description: 描述<br> author: 作者<br> avatar: /images/图标<br> language: zh-Hans（中文）</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/Hexo%E9%A1%B5%E9%9D%A2%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" data-id="ckh7lu3tg0001zwvrabyohtgq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo博客本地部署流程" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-hexo博客本地部署流程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/11/07/hexo%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/" class="article-date">
   <time datetime="2020-11-07T09:27:54.691Z" itemprop="datePublished">2020-11-07</time>
@@ -369,241 +354,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-当文件资源管理器打开缓慢" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/%E5%BD%93%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E6%89%93%E5%BC%80%E7%BC%93%E6%85%A2/" class="article-date">
-  <time datetime="2020-11-07T09:27:54.689Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="当文件资源管理器打开缓慢"><a href="#当文件资源管理器打开缓慢" class="headerlink" title="当文件资源管理器打开缓慢"></a>当文件资源管理器打开缓慢</h2><p><img src="https://img-blog.csdn.net/20180411230824637?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMzNzA2Njcz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>win10 打开设置 个性化 颜色 取消勾选  从 我的背景 自动选取一种颜色  即可</p>
-<p>来源于贴吧， 奇奇怪怪的解决方案。 Windows系统 奇奇怪怪的Bug</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/%E5%BD%93%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E6%89%93%E5%BC%80%E7%BC%93%E6%85%A2/" data-id="ckh7lu3ti0003zwvrdkckd41m" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-网站内容禁止复制？电脑大神教你5种方法，5秒破解，秒学！" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/%E7%BD%91%E7%AB%99%E5%86%85%E5%AE%B9%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%EF%BC%9F%E7%94%B5%E8%84%91%E5%A4%A7%E7%A5%9E%E6%95%99%E4%BD%A05%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C5%E7%A7%92%E7%A0%B4%E8%A7%A3%EF%BC%8C%E7%A7%92%E5%AD%A6%EF%BC%81/" class="article-date">
-  <time datetime="2020-11-07T09:27:54.687Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="网站内容禁止复制？电脑大神教你5种方法，5秒破解，秒学！"><a href="#网站内容禁止复制？电脑大神教你5种方法，5秒破解，秒学！" class="headerlink" title="网站内容禁止复制？电脑大神教你5种方法，5秒破解，秒学！"></a>网站内容禁止复制？电脑大神教你5种方法，5秒破解，秒学！</h2><p>通过搜索引擎查阅资料的时候经常会将查到的内容复制下来。不过遗憾的是，并是所有网站的内容你都可以轻松的自由复制、拿来即用。当你复制这些网站的内容时有的会提示你登录之后才可以复制，有的甚至需要付费之后才能复制。好不容易找到了资源，眼看着却复制不出来，是不是很着急？遇到这种情况怎么办呢？</p>
-<p><img src="https://pic.rmb.bdstatic.com/d2bf85ec5b7cc34db7221e17390743af6649.gif" alt="img"></p>
-<p>实际上，对网页内容限制复制基本上都是利用JavaScript代码来实现。所以，知道了它的原理，我们就可以轻松应对了。</p>
-<p>1、使用JavaScript代码，以牙还牙</p>
-<p>刚才已经说过，对网页内容限制复制基本上都是利用JavaScript代码来实现。同样，我们也可以通过Javascript代码来禁用脚本，让之前加载的限制代码失效。</p>
-<p>具体操作方法为：</p>
-<p>在浏览器地址栏中输入: javascript:void($={}); 然后按回车键，然后网页上的内容就任由你复制啦，注意要手动输入，复制无效哦。如果输入后还是无效的话，可以先将这个网页按F5键刷新一下，再在浏览器中输入上面的代码。</p>
-<p><img src="https://pic.rmb.bdstatic.com/9612a8a0dac9a570a30ce42b706f59454944.gif" alt="img"></p>
-<p>2、保存为网页</p>
-<p>有的Javascript脚本会在保存网页后失效，我们可以利用这个特性来实现复制的目的。</p>
-<p>具体操作方法为：</p>
-<p>在需要复制内容的网页空白区域点右键，并选择【网页另存为】选项，并选择【仅HTML】将网页以html格式保存在电脑中。然后再打开保存的这个网页就可以自由复制了。</p>
-<p><img src="https://pic.rmb.bdstatic.com/2b9f0154fe0ccb7dd6aacc127c4c93ef9053.gif" alt="img"></p>
-<p>3、截图识别</p>
-<p>网页可以限制你复制但是限制不了你截图，所以可以将需要复制的内容部分截图，然后通过一些文字识别工具将图片中的文字识别出来。</p>
-<p><img src="https://pic.rmb.bdstatic.com/7d1c2365aa0d9cd0f9ff08c87328c5362906.gif" alt="img"></p>
-<p>4、查看源代码</p>
-<p>网页的内容都是由html源代码经过浏览器解析之后才显示出来的。所以，当我们能够看到内容的时候，这些内容已经是加载到我们的浏览器了。此时只需按一个组合键【ctrl+U】打开这个网页的源代码即可轻松复制。</p>
-<p>需要注意的是，大多数小伙伴打开源代码后，发现里面的内容很多，而且还看不懂。不过没关系，再按一下组合键【Ctr+F】搜索一部分文章内容，就可以快速定位到你需要的文字的位置。接下就自由复制吧。</p>
-<p><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=95079683,871309784&fm=173&app=49&f=JPEG?w=640&h=640&s=F5907B97499E45CA0CFD6CCA03007032" alt="img"></p>
-<p>5、审查元素</p>
-<p>这是一个比较高级的方法，但是效率是非常快的。直接在需要复制的文字上点鼠标右键然后选择【审查元素】，你会发现浏览器已经自动打开网页的源代码并定位到当前内容了。直接在文字上双击并【Ctr+C】复制即可。</p>
-<p>有了以上几种方法吗，以后在遇到网站上的文章无法复制再也不用怕啦，快快收藏起来吧！除此之外还有一些其它的方法，如果你还知道的话，欢迎大家留言交流！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/%E7%BD%91%E7%AB%99%E5%86%85%E5%AE%B9%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%EF%BC%9F%E7%94%B5%E8%84%91%E5%A4%A7%E7%A5%9E%E6%95%99%E4%BD%A05%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C5%E7%A7%92%E7%A0%B4%E8%A7%A3%EF%BC%8C%E7%A7%92%E5%AD%A6%EF%BC%81/" data-id="ckh7lu3tq0005zwvr34mceqib" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-更新博客的时候遇到的一些问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2020-11-07T09:27:54.686Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2020/11/07/Hexo%E9%A1%B5%E9%9D%A2%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">部署Hexo时遇到的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>部署Hexo时遇到的问题</p>
-<h3 id="每次更新博客之后的推送方式"><a href="#每次更新博客之后的推送方式" class="headerlink" title="每次更新博客之后的推送方式."></a>每次更新博客之后的推送方式.</h3><p>hexo g  生成静态文件,</p>
-<p>hexo d  部署到github上.</p>
-<p>注意, 如果md文件是手动创建的,则需要在头部添加标题和日期等信息.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 部署Hexo时遇到的问题</span><br><span class="line">date:  2020年4月8日21:58:31</span><br><span class="line">type:  &quot;Hexo教程&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-
-<p>英文冒号和值之间要有<strong>空格</strong>, 下面要用<strong>—</strong> 来与正文分隔.</p>
-<p>包括_config.yml 中的 属性和值之间也要有空格来分隔. 否则会报错.</p>
-<h3 id="使用Github-SSH-Key来避免Hexo部署时输入账户密码"><a href="#使用Github-SSH-Key来避免Hexo部署时输入账户密码" class="headerlink" title="使用Github SSH Key来避免Hexo部署时输入账户密码"></a>使用Github SSH Key来避免Hexo部署时输入账户密码</h3><p>当我用hexo d 时, 总会要在cmd中输入GitHub的账户名和密码,推送较为麻烦, 之前的GitHub项目明明都设置好了ssh 可以免密推送,为什么这里不行呢? 下面是解决方案.</p>
-<h5 id="操作-修改-config-yml，将部署方式从https方式修改为ssh方式。注意-repository-属性的值"><a href="#操作-修改-config-yml，将部署方式从https方式修改为ssh方式。注意-repository-属性的值" class="headerlink" title="操作 修改_config.yml，将部署方式从https方式修改为ssh方式。注意 repository 属性的值."></a>操作 修改_config.yml，将部署方式从https方式修改为ssh方式。注意 repository 属性的值.</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;ZhangHao0810&#x2F;ZhangHao0810.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:ZhangHao0810&#x2F;ZhangHao0810.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<h2 id="hexo-d命令报错-ERROR-Deployer-not-found-git"><a href="#hexo-d命令报错-ERROR-Deployer-not-found-git" class="headerlink" title="hexo d命令报错 ERROR Deployer not found: git"></a>hexo d命令报错 ERROR Deployer not found: git</h2><p>已经在站点配置文件中写入了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:   # Github pages地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<p>但是执行，hexo d报错：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
-
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>这是因为没安装hexo-deployer-git插件，在站点目录下输入下面的插件安装就好了：</p>
-<p>npm install hexo-deployer-git –save</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>然后在使用Hexo -d命令就可以推送了。</p>
-<h2 id="hexo博客搭建时图片无法正常显示的问题"><a href="#hexo博客搭建时图片无法正常显示的问题" class="headerlink" title="hexo博客搭建时图片无法正常显示的问题"></a>hexo博客搭建时图片无法正常显示的问题</h2><p>最近在GitHub Pages中搭建了hexo博客，并且使用了主题，当使用文字博客或者外链图片时没有什么问题，但是使用内置图片却出现了问题，在此记录下来。<br>hexo-asset-image无法在新版本使用</p>
-<p>当发布新文章时，我使用了hexo-asset-image这个插件，这个插件需要在_config.yml中设置<code>post_asset_folder=true</code>才能开启，并且需要安装插件，安装方法为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-<p>外网太慢, 使用cnpm来安装:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-
-<p>使用该插件后新建文章hexo new  “测试文章”，就会在post文件夹生成同名的文件夹，该文件夹为存放图片的文件夹，然后再在文章里使用markdown的引用图片的方式进行引用，在使用hexo generate后，生成的html文件会自动的加上图片的绝对路径。</p>
-<p>但是这中方法在hexo3.0之后貌似无法使用，目前我用的hexo版本为4.2，也是无法使用的，生成的链接类似：</p>
-<p>/.ml//logo.jpg</p>
-<p>导致在网页上无法显示<br>修改方法</p>
-<p>第一种修改方法为通过hexo自带的图片标签，如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>详见hexo官方对资源文件夹的说明,官方也明确提到了，如果使用markdown的语法，图片可能不会正常显示。</p>
-<p>第二种修改方法时是通过修改hexo-asset-image这个插件的源代码来实现的，找到路径node_modules\hexo-asset-image\index.js,替换其中的内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;;</span><br><span class="line">var cheerio &#x3D; require(&#39;cheerio&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;14480345&#x2F;how-to-get-the-nth-occurrence-in-a-string</span><br><span class="line">function getPosition(str, m, i) &#123;</span><br><span class="line">  return str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version &#x3D; String(hexo.version).split(&#39;.&#39;);</span><br><span class="line">hexo.extend.filter.register(&#39;after_post_render&#39;, function(data)&#123;</span><br><span class="line">  var config &#x3D; hexo.config;</span><br><span class="line">  if(config.post_asset_folder)&#123;</span><br><span class="line">    	var link &#x3D; data.permalink;</span><br><span class="line">	if(version.length &gt; 0 &amp;&amp; Number(version[0]) &#x3D;&#x3D; 3)</span><br><span class="line">	   var beginPos &#x3D; getPosition(link, &#39;&#x2F;&#39;, 1) + 1;</span><br><span class="line">	else</span><br><span class="line">	   var beginPos &#x3D; getPosition(link, &#39;&#x2F;&#39;, 3) + 1;</span><br><span class="line">	&#x2F;&#x2F; In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;...&#x2F;about&#x2F;index.html&quot;.</span><br><span class="line">	var endPos &#x3D; link.lastIndexOf(&#39;&#x2F;&#39;) + 1;</span><br><span class="line">    link &#x3D; link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess &#x3D; [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];</span><br><span class="line">    for(var i &#x3D; 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key &#x3D; toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ &#x3D; cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: false,</span><br><span class="line">        xmlMode: false,</span><br><span class="line">        lowerCaseTags: false,</span><br><span class="line">        decodeEntities: false</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(&#39;img&#39;).each(function()&#123;</span><br><span class="line">		if ($(this).attr(&#39;src&#39;))&#123;</span><br><span class="line">			&#x2F;&#x2F; For windows style path, we replace &#39;\&#39; to &#39;&#x2F;&#39;.</span><br><span class="line">			var src &#x3D; $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;&#x2F;&#39;);</span><br><span class="line">			if(!&#x2F;http[s]*.*|\&#x2F;\&#x2F;.*&#x2F;.test(src) &amp;&amp;</span><br><span class="line">			   !&#x2F;^\s*\&#x2F;&#x2F;.test(src)) &#123;</span><br><span class="line">			  &#x2F;&#x2F; For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.</span><br><span class="line">			  &#x2F;&#x2F; In addition, to support multi-level local directory.</span><br><span class="line">			  var linkArray &#x3D; link.split(&#39;&#x2F;&#39;).filter(function(elem)&#123;</span><br><span class="line">				return elem !&#x3D; &#39;&#39;;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  var srcArray &#x3D; src.split(&#39;&#x2F;&#39;).filter(function(elem)&#123;</span><br><span class="line">				return elem !&#x3D; &#39;&#39; &amp;&amp; elem !&#x3D; &#39;.&#39;;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  if(srcArray.length &gt; 1)</span><br><span class="line">				srcArray.shift();</span><br><span class="line">			  src &#x3D; srcArray.join(&#39;&#x2F;&#39;);</span><br><span class="line">			  $(this).attr(&#39;src&#39;, config.root + link + src);</span><br><span class="line">			  console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);</span><br><span class="line">			console.info&amp;&amp;console.info($(this));</span><br><span class="line">		&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] &#x3D; $.html();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>当我使用插件时,推送到网络之后,图片依然无法显示, 查看图片的链接, 其中出现了child  </p>
-<p><a target="_blank" rel="noopener" href="https://zhanghao0810.github.io/child/2020/04/11/ceshi/20190410220553413.jpg">https://zhanghao0810.github.io/child/2020/04/11/ceshi/20190410220553413.jpg</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhanghao0810.github.io/2020/04/11/ceshi/20190410220553413.jpg%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9C%B0%E5%9D%80">https://zhanghao0810.github.io/2020/04/11/ceshi/20190410220553413.jpg才是正确的地址</a>.</p>
-<p>所以不能链接到正确的图片地址.</p>
-<p>修改方式, 将_config.yml 这里出现了child 尝试将url后面原来带的child去了,url改成自己的url 奇迹般的可以了.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">URL&#96;</span><br><span class="line">&#96;If your site is put in a subdirectory, set url as &#39;http:&#x2F;&#x2F;yoursite.com&#x2F;child&#39; and root as &#39;&#x2F;child&#x2F;&#39;&#96;</span><br><span class="line">&#96;url: http:&#x2F;&#x2F;ZhangHao.com&#x2F;&#96;</span><br><span class="line">&#96;root: &#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>这样是可以的. 利用了hexo提供的规范. 但是在本地MarkDown看不到图片,不方便. </p>
-<h2 id="Hexo启动页面显示extends-includes-layout-pug-block-content-include-includes-recent-posts-pug-include"><a href="#Hexo启动页面显示extends-includes-layout-pug-block-content-include-includes-recent-posts-pug-include" class="headerlink" title="Hexo启动页面显示extends includes/layout.pug block content include includes/recent-posts.pug include"></a>Hexo启动页面显示extends includes/layout.pug block content include includes/recent-posts.pug include</h2><p>Hexo更改主题后启动服务器，界面显如下字符:</p>
-<p>extends includes/layout.pug block content include includes/recent-posts.pug include includes/partial</p>
-<p>解决方案:</p>
-<p>执行如下命令</p>
-<blockquote>
-<p>npm install –save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive </p>
-</blockquote>
-<p>清除缓存<br>hexo clean</p>
-<p>生成静态文件,推送即可<br>hexo g<br>hexo d </p>
-<h3 id="Node-js版本的问题。"><a href="#Node-js版本的问题。" class="headerlink" title="Node.js版本的问题。"></a>Node.js版本的问题。</h3><p>12.14即可。</p>
-<h3 id="YAMLException-end-of-the-stream-or-a-document-separator-is-expected-at-line-6-column-1"><a href="#YAMLException-end-of-the-stream-or-a-document-separator-is-expected-at-line-6-column-1" class="headerlink" title="YAMLException: end of the stream or a document separator is expected at line 6, column 1"></a>YAMLException: end of the stream or a document separator is expected at line 6, column 1</h3><p>找找  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">------------- </span><br></pre></td></tr></table></figure>
-
-<p>的后面有没有 空格， 必须加上一个空格才行。 </p>
-<p><strong>还有 生成文件的时候， 最好是用  hexo new “title” 而不要直接拖一个md过来。</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" data-id="ckh7lu3ti0004zwvr30vvctpy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/07/hello-world/" class="article-date">
-  <time datetime="2020-11-07T08:37:05.717Z" itemprop="datePublished">2020-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          (no title)
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/07/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2020/11/07/%E5%BD%93%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E6%89%93%E5%BC%80%E7%BC%93%E6%85%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/07/hello-world/" data-id="ckh7lu3ti0002zwvra93sb8m8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         

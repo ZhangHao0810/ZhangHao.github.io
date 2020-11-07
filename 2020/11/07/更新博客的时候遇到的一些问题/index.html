@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>部署Hexo时遇到的问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="部署Hexo时遇到的问题 每次更新博客之后的推送方式.hexo g  生成静态文件, hexo d  部署到github上. 注意, 如果md文件是手动创建的,则需要在头部添加标题和日期等信息. 12345---title: 部署Hexo时遇到的问题date:  2020年4月8日21:58:31type:  &quot;Hexo教程&quot;---   英文冒号和值之间要有空格, 下面要用—">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部署Hexo时遇到的问题">
+<meta property="og:url" content="http://example.com/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="部署Hexo时遇到的问题 每次更新博客之后的推送方式.hexo g  生成静态文件, hexo d  部署到github上. 注意, 如果md文件是手动创建的,则需要在头部添加标题和日期等信息. 12345---title: 部署Hexo时遇到的问题date:  2020年4月8日21:58:31type:  &quot;Hexo教程&quot;---   英文冒号和值之间要有空格, 下面要用—">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-07T09:27:54.686Z">
+<meta property="article:modified_time" content="2020-11-07T11:21:58.645Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-更新博客的时候遇到的一些问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-11-07T09:27:54.686Z" itemprop="datePublished">2020-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      部署Hexo时遇到的问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>部署Hexo时遇到的问题</p>
+<h3 id="每次更新博客之后的推送方式"><a href="#每次更新博客之后的推送方式" class="headerlink" title="每次更新博客之后的推送方式."></a>每次更新博客之后的推送方式.</h3><p>hexo g  生成静态文件,</p>
+<p>hexo d  部署到github上.</p>
+<p>注意, 如果md文件是手动创建的,则需要在头部添加标题和日期等信息.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 部署Hexo时遇到的问题</span><br><span class="line">date:  2020年4月8日21:58:31</span><br><span class="line">type:  &quot;Hexo教程&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+
+<p>英文冒号和值之间要有<strong>空格</strong>, 下面要用<strong>—</strong> 来与正文分隔.</p>
+<p>包括_config.yml 中的 属性和值之间也要有空格来分隔. 否则会报错.</p>
+<h3 id="使用Github-SSH-Key来避免Hexo部署时输入账户密码"><a href="#使用Github-SSH-Key来避免Hexo部署时输入账户密码" class="headerlink" title="使用Github SSH Key来避免Hexo部署时输入账户密码"></a>使用Github SSH Key来避免Hexo部署时输入账户密码</h3><p>当我用hexo d 时, 总会要在cmd中输入GitHub的账户名和密码,推送较为麻烦, 之前的GitHub项目明明都设置好了ssh 可以免密推送,为什么这里不行呢? 下面是解决方案.</p>
+<h5 id="操作-修改-config-yml，将部署方式从https方式修改为ssh方式。注意-repository-属性的值"><a href="#操作-修改-config-yml，将部署方式从https方式修改为ssh方式。注意-repository-属性的值" class="headerlink" title="操作 修改_config.yml，将部署方式从https方式修改为ssh方式。注意 repository 属性的值."></a>操作 修改_config.yml，将部署方式从https方式修改为ssh方式。注意 repository 属性的值.</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;ZhangHao0810&#x2F;ZhangHao0810.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:ZhangHao0810&#x2F;ZhangHao0810.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="hexo-d命令报错-ERROR-Deployer-not-found-git"><a href="#hexo-d命令报错-ERROR-Deployer-not-found-git" class="headerlink" title="hexo d命令报错 ERROR Deployer not found: git"></a>hexo d命令报错 ERROR Deployer not found: git</h2><p>已经在站点配置文件中写入了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:   # Github pages地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>但是执行，hexo d报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>这是因为没安装hexo-deployer-git插件，在站点目录下输入下面的插件安装就好了：</p>
+<p>npm install hexo-deployer-git –save</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在使用Hexo -d命令就可以推送了。</p>
+<h2 id="hexo博客搭建时图片无法正常显示的问题"><a href="#hexo博客搭建时图片无法正常显示的问题" class="headerlink" title="hexo博客搭建时图片无法正常显示的问题"></a>hexo博客搭建时图片无法正常显示的问题</h2><p>最近在GitHub Pages中搭建了hexo博客，并且使用了主题，当使用文字博客或者外链图片时没有什么问题，但是使用内置图片却出现了问题，在此记录下来。<br>hexo-asset-image无法在新版本使用</p>
+<p>当发布新文章时，我使用了hexo-asset-image这个插件，这个插件需要在_config.yml中设置<code>post_asset_folder=true</code>才能开启，并且需要安装插件，安装方法为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>外网太慢, 使用cnpm来安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+<p>使用该插件后新建文章hexo new  “测试文章”，就会在post文件夹生成同名的文件夹，该文件夹为存放图片的文件夹，然后再在文章里使用markdown的引用图片的方式进行引用，在使用hexo generate后，生成的html文件会自动的加上图片的绝对路径。</p>
+<p>但是这中方法在hexo3.0之后貌似无法使用，目前我用的hexo版本为4.2，也是无法使用的，生成的链接类似：</p>
+<p>/.ml//logo.jpg</p>
+<p>导致在网页上无法显示<br>修改方法</p>
+<p>第一种修改方法为通过hexo自带的图片标签，如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>详见hexo官方对资源文件夹的说明,官方也明确提到了，如果使用markdown的语法，图片可能不会正常显示。</p>
+<p>第二种修改方法时是通过修改hexo-asset-image这个插件的源代码来实现的，找到路径node_modules\hexo-asset-image\index.js,替换其中的内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;;</span><br><span class="line">var cheerio &#x3D; require(&#39;cheerio&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;14480345&#x2F;how-to-get-the-nth-occurrence-in-a-string</span><br><span class="line">function getPosition(str, m, i) &#123;</span><br><span class="line">  return str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var version &#x3D; String(hexo.version).split(&#39;.&#39;);</span><br><span class="line">hexo.extend.filter.register(&#39;after_post_render&#39;, function(data)&#123;</span><br><span class="line">  var config &#x3D; hexo.config;</span><br><span class="line">  if(config.post_asset_folder)&#123;</span><br><span class="line">    	var link &#x3D; data.permalink;</span><br><span class="line">	if(version.length &gt; 0 &amp;&amp; Number(version[0]) &#x3D;&#x3D; 3)</span><br><span class="line">	   var beginPos &#x3D; getPosition(link, &#39;&#x2F;&#39;, 1) + 1;</span><br><span class="line">	else</span><br><span class="line">	   var beginPos &#x3D; getPosition(link, &#39;&#x2F;&#39;, 3) + 1;</span><br><span class="line">	&#x2F;&#x2F; In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;...&#x2F;about&#x2F;index.html&quot;.</span><br><span class="line">	var endPos &#x3D; link.lastIndexOf(&#39;&#x2F;&#39;) + 1;</span><br><span class="line">    link &#x3D; link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess &#x3D; [&#39;excerpt&#39;, &#39;more&#39;, &#39;content&#39;];</span><br><span class="line">    for(var i &#x3D; 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key &#x3D; toprocess[i];</span><br><span class="line"> </span><br><span class="line">      var $ &#x3D; cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: false,</span><br><span class="line">        xmlMode: false,</span><br><span class="line">        lowerCaseTags: false,</span><br><span class="line">        decodeEntities: false</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(&#39;img&#39;).each(function()&#123;</span><br><span class="line">		if ($(this).attr(&#39;src&#39;))&#123;</span><br><span class="line">			&#x2F;&#x2F; For windows style path, we replace &#39;\&#39; to &#39;&#x2F;&#39;.</span><br><span class="line">			var src &#x3D; $(this).attr(&#39;src&#39;).replace(&#39;\\&#39;, &#39;&#x2F;&#39;);</span><br><span class="line">			if(!&#x2F;http[s]*.*|\&#x2F;\&#x2F;.*&#x2F;.test(src) &amp;&amp;</span><br><span class="line">			   !&#x2F;^\s*\&#x2F;&#x2F;.test(src)) &#123;</span><br><span class="line">			  &#x2F;&#x2F; For &quot;about&quot; page, the first part of &quot;src&quot; can&#39;t be removed.</span><br><span class="line">			  &#x2F;&#x2F; In addition, to support multi-level local directory.</span><br><span class="line">			  var linkArray &#x3D; link.split(&#39;&#x2F;&#39;).filter(function(elem)&#123;</span><br><span class="line">				return elem !&#x3D; &#39;&#39;;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  var srcArray &#x3D; src.split(&#39;&#x2F;&#39;).filter(function(elem)&#123;</span><br><span class="line">				return elem !&#x3D; &#39;&#39; &amp;&amp; elem !&#x3D; &#39;.&#39;;</span><br><span class="line">			  &#125;);</span><br><span class="line">			  if(srcArray.length &gt; 1)</span><br><span class="line">				srcArray.shift();</span><br><span class="line">			  src &#x3D; srcArray.join(&#39;&#x2F;&#39;);</span><br><span class="line">			  $(this).attr(&#39;src&#39;, config.root + link + src);</span><br><span class="line">			  console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);</span><br><span class="line">			console.info&amp;&amp;console.info($(this));</span><br><span class="line">		&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] &#x3D; $.html();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>当我使用插件时,推送到网络之后,图片依然无法显示, 查看图片的链接, 其中出现了child  </p>
+<p><a target="_blank" rel="noopener" href="https://zhanghao0810.github.io/child/2020/04/11/ceshi/20190410220553413.jpg">https://zhanghao0810.github.io/child/2020/04/11/ceshi/20190410220553413.jpg</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhanghao0810.github.io/2020/04/11/ceshi/20190410220553413.jpg%E6%89%8D%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%E5%9C%B0%E5%9D%80">https://zhanghao0810.github.io/2020/04/11/ceshi/20190410220553413.jpg才是正确的地址</a>.</p>
+<p>所以不能链接到正确的图片地址.</p>
+<p>修改方式, 将_config.yml 这里出现了child 尝试将url后面原来带的child去了,url改成自己的url 奇迹般的可以了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">URL&#96;</span><br><span class="line">&#96;If your site is put in a subdirectory, set url as &#39;http:&#x2F;&#x2F;yoursite.com&#x2F;child&#39; and root as &#39;&#x2F;child&#x2F;&#39;&#96;</span><br><span class="line">&#96;url: http:&#x2F;&#x2F;ZhangHao.com&#x2F;&#96;</span><br><span class="line">&#96;root: &#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>这样是可以的. 利用了hexo提供的规范. 但是在本地MarkDown看不到图片,不方便. </p>
+<h2 id="Hexo启动页面显示extends-includes-layout-pug-block-content-include-includes-recent-posts-pug-include"><a href="#Hexo启动页面显示extends-includes-layout-pug-block-content-include-includes-recent-posts-pug-include" class="headerlink" title="Hexo启动页面显示extends includes/layout.pug block content include includes/recent-posts.pug include"></a>Hexo启动页面显示extends includes/layout.pug block content include includes/recent-posts.pug include</h2><p>Hexo更改主题后启动服务器，界面显如下字符:</p>
+<p>extends includes/layout.pug block content include includes/recent-posts.pug include includes/partial</p>
+<p>解决方案:</p>
+<p>执行如下命令</p>
+<blockquote>
+<p>npm install –save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive </p>
+</blockquote>
+<p>清除缓存<br>hexo clean</p>
+<p>生成静态文件,推送即可<br>hexo g<br>hexo d </p>
+<h3 id="Node-js版本的问题。"><a href="#Node-js版本的问题。" class="headerlink" title="Node.js版本的问题。"></a>Node.js版本的问题。</h3><p>12.14即可。</p>
+<h3 id="YAMLException-end-of-the-stream-or-a-document-separator-is-expected-at-line-6-column-1"><a href="#YAMLException-end-of-the-stream-or-a-document-separator-is-expected-at-line-6-column-1" class="headerlink" title="YAMLException: end of the stream or a document separator is expected at line 6, column 1"></a>YAMLException: end of the stream or a document separator is expected at line 6, column 1</h3><p>找找  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">------------- </span><br></pre></td></tr></table></figure>
+
+<p>的后面有没有 空格， 必须加上一个空格才行。 </p>
+<p><strong>还有 生成文件的时候， 最好是用  hexo new “title” 而不要直接拖一个md过来。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/07/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" data-id="ckh7lu3ti0004zwvr30vvctpy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/11/07/%E7%BD%91%E7%AB%99%E5%86%85%E5%AE%B9%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%EF%BC%9F%E7%94%B5%E8%84%91%E5%A4%A7%E7%A5%9E%E6%95%99%E4%BD%A05%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C5%E7%A7%92%E7%A0%B4%E8%A7%A3%EF%BC%8C%E7%A7%92%E5%AD%A6%EF%BC%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/07/Hexo-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Hexo 使用注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/07/Hexo%E9%A1%B5%E9%9D%A2%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/07/hexo%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/07/%E5%BD%93%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E6%89%93%E5%BC%80%E7%BC%93%E6%85%A2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/07/%E7%BD%91%E7%AB%99%E5%86%85%E5%AE%B9%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%EF%BC%9F%E7%94%B5%E8%84%91%E5%A4%A7%E7%A5%9E%E6%95%99%E4%BD%A05%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C5%E7%A7%92%E7%A0%B4%E8%A7%A3%EF%BC%8C%E7%A7%92%E5%AD%A6%EF%BC%81/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
