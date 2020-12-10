@@ -3604,8 +3604,7 @@
   <entry>
     <title>【NLP】Bert中文文本分类实战03-Attention机制</title>
     <url>/2020/12/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<p>[toc]</p>
-<h1 id="Seq2Seq模型的一个实例"><a href="#Seq2Seq模型的一个实例" class="headerlink" title="Seq2Seq模型的一个实例"></a>Seq2Seq模型的一个实例</h1><p><img src="/2020/12/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/1607415126(1).png" alt="1607415126(1)"></p>
+    <content><![CDATA[<h1 id="Seq2Seq模型的一个实例"><a href="#Seq2Seq模型的一个实例" class="headerlink" title="Seq2Seq模型的一个实例"></a>Seq2Seq模型的一个实例</h1><p><img src="/2020/12/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/1607415126(1).png" alt="1607415126(1)"></p>
 <p>h0 是初始化， z0 都是可以学习的。  <code>&lt;bos&gt;</code>唤醒词。</p>
 <h1 id="Attention机制（图形化讲解）"><a href="#Attention机制（图形化讲解）" class="headerlink" title="Attention机制（图形化讲解）"></a>Attention机制（图形化讲解）</h1><p><img src="/2020/12/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/1607415308(1).png" alt="1607415308(1)"></p>
 <p>将h1，h2 变为c1.</p>
@@ -5143,6 +5142,25 @@
       </categories>
       <tags>
         <tag>Java多线程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【NLP】Bert中文文本分类实战04-Self-Attention</title>
+    <url>/2020/12/10/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9804-Self-Attention/</url>
+    <content><![CDATA[<h1 id="Self-Attention理论"><a href="#Self-Attention理论" class="headerlink" title="Self-Attention理论"></a>Self-Attention理论</h1><p>![1607602609(1)](D:\Data\My Blog\blog\source_posts\NLP\Bert中文文本分类实战\【NLP】Bert中文文本分类实战04-Self-Attention\1607602609(1).png)</p>
+<p>可以将Self-Attention看做一个黑盒子，不用管里面的东西。 b1可以看到所有的a，b2也是，并且b们可以并行进行计算。</p>
+<p>Self-Attention是来自于谷歌论文“Attention is all your need”</p>
+<p>每一个q和每一个k做Attention</p>
+<p>Attention 就是指 一个变化，生成新的信息。</p>
+<h1 id="Self-Attention数学理论"><a href="#Self-Attention数学理论" class="headerlink" title="Self-Attention数学理论"></a>Self-Attention数学理论</h1><h1 id="Multi-head-self-Attention理论"><a href="#Multi-head-self-Attention理论" class="headerlink" title="Multi-head-self-Attention理论"></a>Multi-head-self-Attention理论</h1>]]></content>
+      <categories>
+        <category>NLP</category>
+        <category>Bert</category>
+      </categories>
+      <tags>
+        <tag>科研</tag>
+        <tag>NLP</tag>
+        <tag>Bert</tag>
       </tags>
   </entry>
 </search>
