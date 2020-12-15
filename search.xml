@@ -5163,4 +5163,17 @@
         <tag>Bert</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Hexo-Admin的使用</title>
+    <url>/2020/12/15/Hexo-Admin%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>这是我的Hexo - Admin插件的测试</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Hexo插件</category>
+      </categories>
+      <tags>
+        <tag>Hexo插件</tag>
+      </tags>
+  </entry>
 </search>
