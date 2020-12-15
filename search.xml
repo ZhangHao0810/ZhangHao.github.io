@@ -37,16 +37,6 @@
       </tags>
   </entry>
   <entry>
-    <title>中文测试</title>
-    <url>/2020/12/15/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<p>222222222222222222221sdf</p>
-<p>dsgfgj </p>
-<p><img src="/2020/12/15/%E4%B8%AD%E6%96%87%E6%B5%8B/pasted-1.png" alt="玖涯博客"></p>
-<p><img src="/2020/12/15/%E4%B8%AD%E6%96%87%E6%B5%8B/pasted-2.png" alt="玖涯博客"></p>
-<p><img src="/2020/12/15/%E4%B8%AD%E6%96%87%E6%B5%8B/pasted-4.png" alt="玖涯博客"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Eclipse导出配置文件,并给新工作空间使用</title>
     <url>/2020/10/15/Eclipse/Eclipse%E5%AF%BC%E5%87%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6,%E5%B9%B6%E7%BB%99%E6%96%B0%E5%B7%A5%E4%BD%9C%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="eclipse配置文件导出-并给新工作空间使用"><a href="#eclipse配置文件导出-并给新工作空间使用" class="headerlink" title="eclipse配置文件导出,并给新工作空间使用"></a>eclipse配置文件导出,并给新工作空间使用</h1><p> eclipse的默认配置一般不能满足我们的要求，我们一般会修改一些配置，如字体、背景颜色、快捷键及一些template等等，这样方便我们的开发。可是当我们新建一个工作空间的时候，eclipse又会使用默认配置，怎样将我们习惯的配置导出然后导入新工作空间呢？   </p>
