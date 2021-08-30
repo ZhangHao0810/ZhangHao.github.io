@@ -1,0 +1,261 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论 | 欢迎来到SuperZhang的个人空间</title><meta name="keywords" content="科研,NLP,Bert"><meta name="author" content="Zhang Hao"><meta name="copyright" content="Zhang Hao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="技术发展历程从Seq2Seq诞生到目前的 基于序列模型的NLP发展   2014 正式提出Seq2Seq，同一年 顶会上有两篇文章都用到了  序列到序列， 编码器-解码器模型，用来解决机器翻译的问题。 RNN和LSTM出现的都比较早，但是GRU 2014年才出现。  2015年 针对Seq2Seq的缺点，Attention 注意力机制出现。  2017年Attention真正爆发，有一部分人用Cn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论">
+<meta property="og:url" content="http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/index.html">
+<meta property="og:site_name" content="欢迎来到SuperZhang的个人空间">
+<meta property="og:description" content="技术发展历程从Seq2Seq诞生到目前的 基于序列模型的NLP发展   2014 正式提出Seq2Seq，同一年 顶会上有两篇文章都用到了  序列到序列， 编码器-解码器模型，用来解决机器翻译的问题。 RNN和LSTM出现的都比较早，但是GRU 2014年才出现。  2015年 针对Seq2Seq的缺点，Attention 注意力机制出现。  2017年Attention真正爆发，有一部分人用Cn">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%B0%81%E9%9D%A2.jpg">
+<meta property="article:published_time" content="2021-02-08T02:43:31.000Z">
+<meta property="article:modified_time" content="2021-08-30T08:26:15.263Z">
+<meta property="article:author" content="Zhang Hao">
+<meta property="article:tag" content="科研">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="Bert">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%B0%81%E9%9D%A2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Zhang Hao","link":"链接: ","source":"来源: 欢迎来到SuperZhang的个人空间","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"Java,Python,C++,C#,JavaScript,PHP,SQL,Go","fontSize":"15px"},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-center"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-30 16:26:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">54</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%B0%81%E9%9D%A2.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">欢迎来到SuperZhang的个人空间</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-08T02:43:31.000Z" title="发表于 2021-02-08 10:43:31">2021-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-30T08:26:15.263Z" title="更新于 2021-08-30 16:26:15">2021-08-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP/">NLP</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP/Bert/">Bert</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="技术发展历程"><a href="#技术发展历程" class="headerlink" title="技术发展历程"></a>技术发展历程</h1><p>从Seq2Seq诞生到目前的 基于序列模型的NLP发展</p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_19.png" alt="动手学习Bert文本分类_19"></p>
+<ul>
+<li><p>2014 正式提出Seq2Seq，同一年 顶会上有两篇文章都用到了  序列到序列， 编码器-解码器模型，用来解决机器翻译的问题。</p>
+<p>RNN和LSTM出现的都比较早，但是<strong>GRU</strong> 2014年才出现。</p>
+</li>
+<li><p>2015年 针对Seq2Seq的缺点，Attention 注意力机制出现。</p>
+</li>
+<li><p>2017年Attention真正爆发，有一部分人用Cnn取代RNN，Attention。</p>
+<p>谷歌的论文<code>Attention is all your need</code>  将Attention推向顶峰。用Self-Attention取代了Cnn，Rnn。 各式各样的Attention出现。</p>
+<p>Transformer是基于Self-Attention的，是多头的注意力，</p>
+<p>Bert是基于Transformer的encoder 编码部分</p>
+</li>
+</ul>
+<p>Attention 是关键的知识点。</p>
+<h1 id="RNN相关理论及变体讲解"><a href="#RNN相关理论及变体讲解" class="headerlink" title="RNN相关理论及变体讲解"></a>RNN相关理论及变体讲解</h1><h2 id="单层神经网络"><a href="#单层神经网络" class="headerlink" title="单层神经网络"></a>单层神经网络</h2><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_20.png" alt="动手学习Bert文本分类_20"></p>
+<p>线性模型</p>
+<h2 id="经典的RNN网络"><a href="#经典的RNN网络" class="headerlink" title="经典的RNN网络"></a>经典的RNN网络</h2><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_22.png" alt="动手学习Bert文本分类_22"></p>
+<p>左边是简单的画法，右边是循环神经网络的展开</p>
+<p>每一层的输入依赖于上一层 隐藏层的状态 和 当前层的输入。</p>
+<h2 id="RNN的变体（NV1：多个输入一个输出）"><a href="#RNN的变体（NV1：多个输入一个输出）" class="headerlink" title="RNN的变体（NV1：多个输入一个输出）"></a>RNN的变体（NV1：多个输入一个输出）</h2><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_23.png" alt="动手学习Bert文本分类_23"></p>
+<p>每一层依赖于上一层的状态和这一层的新的输入。</p>
+<p>最后一层h5输出之后，过一个Softmax 可以输出分类。</p>
+<p>多个输入，一个输出 （文本分类的任务。）</p>
+<h2 id="RNN的变体（1VN：一个输入多个输出-）"><a href="#RNN的变体（1VN：一个输入多个输出-）" class="headerlink" title="RNN的变体（1VN：一个输入多个输出 ）"></a>RNN的变体（1VN：一个输入多个输出 ）</h2><p><strong>&lt;14年的两篇顶会文章就是分别做了这两个变体&gt;</strong> </p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_24.png" alt="动手学习Bert文本分类_24"></p>
+<p>一个输入，多个输出。 </p>
+<p>典型应用：看图说话，图像描述。</p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_25.png" alt="动手学习Bert文本分类_25">将x 每一个时刻都输入。（输入的都是一个x）</p>
+<h2 id="RNN变体-（NVN）多输入多输出"><a href="#RNN变体-（NVN）多输入多输出" class="headerlink" title="RNN变体 （NVN）多输入多输出"></a>RNN变体 （NVN）多输入多输出</h2><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_26.png" alt="动手学习Bert文本分类_26"></p>
+<p>对联生成，输入上联，得出下联。  做机器翻译，但是只能做对齐的机器翻译。</p>
+<h2 id="RNN变体（NVM-N个输入，M个输出"><a href="#RNN变体（NVM-N个输入，M个输出" class="headerlink" title="RNN变体（NVM)  N个输入，M个输出"></a>RNN变体（NVM)  N个输入，M个输出</h2><p><strong>RNN变体（NVM)</strong>   =  <strong>Seq2Seq</strong>  =  <strong>Encoder-Decoder 模型  =  编码器解码器模型</strong></p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_27.png" alt="动手学习Bert文本分类_27"></p>
+<p>Seq2Seq是两个RNN网络 ， Encoder部分处理输入，形成语义编码c输入Decoder处理输出。</p>
+<p>语义编码c 有两种不同输入</p>
+<p><strong>1：直接输入隐藏层中，做为h0</strong>  ；   2：<strong>接入到每一个输入</strong></p>
+<p>有两种不同的方式，产生了两篇不同的论文。（便是RNN变体 1VN）</p>
+<h1 id="Seq2Seq模型"><a href="#Seq2Seq模型" class="headerlink" title="Seq2Seq模型"></a>Seq2Seq模型</h1><p>Seq2Seq模型 又叫 Encoder-Decoder 模型，简单分为三部分 ：</p>
+<p>​    Encoder，Decoder，State Vector C（中间件状态向量c）</p>
+<p>只看Decoder部分，相当与RNN的1VN的两种变体。</p>
+<h2 id="Encoder部分（以机器翻译为例子）"><a href="#Encoder部分（以机器翻译为例子）" class="headerlink" title="Encoder部分（以机器翻译为例子）"></a>Encoder部分（以机器翻译为例子）</h2><p>上文两篇论文是机器翻译的，Seq2Seq可以完成很多任务，序列生成。</p>
+<p>因为Seq2Seq是NVM，n个输入，m个输出。</p>
+<p>给定句子对<code>&lt;x,y&gt;</code> ，给定输入x，通过Encoder-Decoder模型来翻译成为目标句子y。</p>
+<p>x和y分别由各自的单词序列构成  <code>X=&lt;x1,x2,x3,x4,x5&gt;</code>  , <code>Y=&lt;y1,y2,y3&gt;</code></p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0Bert%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB_30.png" alt="动手学习Bert文本分类_30"></p>
+<p>C 得到的方式如上图方框。Encoder输出时，把所有的输入信息都压缩到向量C中了。是Encoder部分的精华。</p>
+<h2 id="Decoder部分（以机器翻译为例子）"><a href="#Decoder部分（以机器翻译为例子）" class="headerlink" title="Decoder部分（以机器翻译为例子）"></a>Decoder部分（以机器翻译为例子）</h2><ol>
+<li>变体一<img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607400108(1).png" alt="1607400108(1)"></li>
+</ol>
+<p>y0可能是<code>end of sentence</code> ,<code>&lt;START&gt;</code> 是我自己可以随意定义， 就是一个触发词，告诉模型我要开始解码了。如：”小爱同学”   </p>
+<p> 因为是一个RNN，将h1输出的y1作为h2的输入。 </p>
+<ol start="2">
+<li>变体二</li>
+</ol>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607407008(1).png" alt="1607407008(1)"></p>
+<p>c 和 y0 ，c和y1 .。。。 同时作为每一时刻的输入。</p>
+<h1 id="从论文里理解Seq2Seq"><a href="#从论文里理解Seq2Seq" class="headerlink" title="从论文里理解Seq2Seq"></a>从论文里理解Seq2Seq</h1><h2 id="论文框架1"><a href="#论文框架1" class="headerlink" title="论文框架1"></a>论文框架1</h2><p>该框架由这篇论文提出: Cho et al.(2014) Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation （做统计机器翻译的）</p>
+<p>该论文一大贡献是提出了GRU，论文中 Encoder和Decoder都是GRU，为了学习，可以假设Encoder和Decoder 都是RNN。</p>
+<p>注意 红色c是语义变量，黑色c是偏置。</p>
+<h3 id="Encoder部分"><a href="#Encoder部分" class="headerlink" title="Encoder部分"></a>Encoder部分</h3><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607407812(1).png" alt="1607407812(1)"></p>
+<p>关注 隐藏层状态h， 语义向量直接拿最后的隐藏层加了个tanh函数，相当于 <code>c=q（h）</code> </p>
+<p>这个Encoder部分就是简单的RNN的隐藏层+tanh，得到与语义变量c</p>
+<h3 id="Decoder部分"><a href="#Decoder部分" class="headerlink" title="Decoder部分"></a>Decoder部分</h3><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607408473(1).png" alt="1607408473(1)"></p>
+<p>Decoder部分的隐藏层状态依赖于 （上一层隐藏层状态，上一层隐藏层的输出，语义变量C) (h[t-1], y[t-1] , c)</p>
+<p>Ot就是每一个时刻的输出， yt 即 Ot</p>
+<h2 id="论文框架2"><a href="#论文框架2" class="headerlink" title="论文框架2"></a>论文框架2</h2><p>该框架由这篇论文提出: Sutskever et al.(2014) Sequence to Sequence Learning with NeuralNetworks,这个框架也是最常用的一种：结构图如下：</p>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607410089(1).png" alt="1607410089(1)"></p>
+<p>Encoder 输入序列A B C,生成语义向量 c 作为Decoder的初始隐藏状态, Decoder中初始时刻输入<code>&lt;EOS&gt;</code>作为开始标志,直至输出<code>&lt;EOS&gt;</code>结束预测。</p>
+<p>和框架1不同的是,该框架Encoder输出的语义向量c 直接<strong>作为Decoder的初始隐藏状态</strong>,并不作用于之后的时刻。</p>
+<p>这篇论文中使用LSTM作为Encoder和Decoder,为方便描述这里用RNN作为示范。</p>
+<h3 id="Encoder部分-1"><a href="#Encoder部分-1" class="headerlink" title="Encoder部分"></a>Encoder部分</h3><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607410160(1).png" alt="1607410160(1)"></p>
+<h3 id="Decoder部分-1"><a href="#Decoder部分-1" class="headerlink" title="Decoder部分"></a>Decoder部分</h3><p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607410477(1).png" alt="1607410477(1)"></p>
+<p>ht 依赖于 （上一时刻的状态 ，上一时刻的输出）<br>h0 = 语义变量C </p>
+<p>论创新点来说，论文1可以包含论文2了。 论文2是论文1的一种情况。</p>
+<h1 id="Encoder-Decoder模型的局限性"><a href="#Encoder-Decoder模型的局限性" class="headerlink" title="Encoder-Decoder模型的局限性"></a>Encoder-Decoder模型的局限性</h1><ul>
+<li><p><input disabled type="checkbox">  从下图中可以看出 Encoder 和 Decoder 的唯一联系只有语义编码<strong>c</strong>, 即将整个输入序列的信息编码成一个<strong>固定大小</strong>的状态向量再解码,相当于将信息”有损压缩” 。</p>
+</li>
+<li><p><input disabled type="checkbox">  很明显这样做有两个缺点:</p>
+<ul>
+<li>中间语义向量无法完全表达整个输入序列的信息。</li>
+<li>随着输入信息长度的增加,由于向量c长度固定,先前编码好的信息会被后来的信息<strong>覆盖</strong>,导致<strong>丢失</strong>很多信息。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607410986(1).png" alt="1607410986(1)"></p>
+<ul>
+<li><input disabled type="checkbox"> 从下图中可以明显可以发现在生成y1,y2,y3时,<strong>语义编码C</strong>对它们所产生的贡献都是一样的。<ul>
+<li>例如翻译: Cat chase mouse ,模型逐字生成: “猫””捉””老鼠”。在翻译mouse单词时,每一个英语单词对“老鼠”的贡献都是相同的。但mouse对于它的影响应该是最大的。引入Attention模型可解决这个问题。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607411218(1).png" alt="1607411218(1)"></p>
+<h2 id="引入Attention"><a href="#引入Attention" class="headerlink" title="引入Attention"></a>引入Attention</h2><p>Attention 其实就是根据语义编码C做了一些复杂的运算。把 C 在不同时刻搞得不一样了。</p>
+<p>Attention模型的特点:</p>
+<ul>
+<li>是Decoder不再将整个输入序列编码为<strong>固定长度</strong>的中间语义向量C, 而是根据<strong>当前生成</strong>的<strong>新单词</strong>计算新的C(i),使得每个时刻输入不同的C;</li>
+<li>这样就解决了单词信息丢失的问题。引入了Attentien的Encoder-Decoder模型如下图:</li>
+</ul>
+<p><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/1607411642(1).png" alt="1607411642(1)"></p>
+<p>Decoder部分解码的时候，每一个时刻 c是不同的。根据前面输入不同，后面C不同。C的计算方法有很多，具体方法见下一篇Blog。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zhang Hao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/">http://example.com/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">欢迎来到SuperZhang的个人空间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%A7%91%E7%A0%94/">科研</a><a class="post-meta__tags" href="/tags/NLP/">NLP</a><a class="post-meta__tags" href="/tags/Bert/">Bert</a></div><div class="post_share"><div class="social-share" data-image="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%B0%81%E9%9D%A2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/"><img class="prev-cover" src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/%E5%B0%81%E9%9D%A2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">【NLP】Bert中文文本分类实战03-Attention机制</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/"><img class="next-cover" src="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/%E5%B0%81%E9%9D%A2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">【NLP】Bert中文文本分类实战01-简介（基础理论）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/06/NLP/Bert中文文本分类实战/【NLP】Bert中文文本分类实战01-简介（基础理论）/" title="【NLP】Bert中文文本分类实战01-简介（基础理论）"><img class="cover" src="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/%E5%B0%81%E9%9D%A2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-06</div><div class="title">【NLP】Bert中文文本分类实战01-简介（基础理论）</div></div></a></div><div><a href="/2021/02/10/NLP/Bert中文文本分类实战/【NLP】Bert中文文本分类实战04-Self-Attention/" title="【NLP】Bert中文文本分类实战04-Self-Attention"><img class="cover" src="/2021/02/10/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9804-Self-Attention/%E5%B0%81%E9%9D%A2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-10</div><div class="title">【NLP】Bert中文文本分类实战04-Self-Attention</div></div></a></div><div><a href="/2021/02/08/NLP/Bert中文文本分类实战/【NLP】Bert中文文本分类实战03-Attention机制/" title="【NLP】Bert中文文本分类实战03-Attention机制"><img class="cover" src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/%E5%B0%81%E9%9D%A2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-08</div><div class="title">【NLP】Bert中文文本分类实战03-Attention机制</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Zhang Hao</div><div class="author-info__description">一个热爱技术又充满乐趣的灵魂</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">79</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">54</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">34</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZhangHao0810"><i class="fab fa-github"></i><span>Follow my Github</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">你好呀~欢迎来到我的小世界。记录自己生活工作中遇到的各种问题。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">技术发展历程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RNN%E7%9B%B8%E5%85%B3%E7%90%86%E8%AE%BA%E5%8F%8A%E5%8F%98%E4%BD%93%E8%AE%B2%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">RNN相关理论及变体讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">2.1.</span> <span class="toc-text">单层神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84RNN%E7%BD%91%E7%BB%9C"><span class="toc-number">2.2.</span> <span class="toc-text">经典的RNN网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E7%9A%84%E5%8F%98%E4%BD%93%EF%BC%88NV1%EF%BC%9A%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E8%BE%93%E5%87%BA%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">RNN的变体（NV1：多个输入一个输出）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E7%9A%84%E5%8F%98%E4%BD%93%EF%BC%881VN%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%BE%93%E5%85%A5%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%87%BA-%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">RNN的变体（1VN：一个输入多个输出 ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E5%8F%98%E4%BD%93-%EF%BC%88NVN%EF%BC%89%E5%A4%9A%E8%BE%93%E5%85%A5%E5%A4%9A%E8%BE%93%E5%87%BA"><span class="toc-number">2.5.</span> <span class="toc-text">RNN变体 （NVN）多输入多输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E5%8F%98%E4%BD%93%EF%BC%88NVM-N%E4%B8%AA%E8%BE%93%E5%85%A5%EF%BC%8CM%E4%B8%AA%E8%BE%93%E5%87%BA"><span class="toc-number">2.6.</span> <span class="toc-text">RNN变体（NVM)  N个输入，M个输出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Seq2Seq%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">Seq2Seq模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Encoder%E9%83%A8%E5%88%86%EF%BC%88%E4%BB%A5%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">Encoder部分（以机器翻译为例子）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decoder%E9%83%A8%E5%88%86%EF%BC%88%E4%BB%A5%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">Decoder部分（以机器翻译为例子）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E8%AE%BA%E6%96%87%E9%87%8C%E7%90%86%E8%A7%A3Seq2Seq"><span class="toc-number">4.</span> <span class="toc-text">从论文里理解Seq2Seq</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E6%A1%86%E6%9E%B61"><span class="toc-number">4.1.</span> <span class="toc-text">论文框架1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Encoder%E9%83%A8%E5%88%86"><span class="toc-number">4.1.1.</span> <span class="toc-text">Encoder部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decoder%E9%83%A8%E5%88%86"><span class="toc-number">4.1.2.</span> <span class="toc-text">Decoder部分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BA%E6%96%87%E6%A1%86%E6%9E%B62"><span class="toc-number">4.2.</span> <span class="toc-text">论文框架2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Encoder%E9%83%A8%E5%88%86-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">Encoder部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Decoder%E9%83%A8%E5%88%86-1"><span class="toc-number">4.2.2.</span> <span class="toc-text">Decoder部分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Encoder-Decoder%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">5.</span> <span class="toc-text">Encoder-Decoder模型的局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5Attention"><span class="toc-number">5.1.</span> <span class="toc-text">引入Attention</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/%E4%B8%80%E4%B8%AA%E6%9E%81%E5%A4%A7%E7%AE%80%E5%8C%96%E6%93%8D%E4%BD%9C%E7%9A%84%E5%B7%A5%E5%85%B7Quicker/" title="Quicker 一个极大简化操作的工具"><img src="/2021/03/15/%E4%B8%80%E4%B8%AA%E6%9E%81%E5%A4%A7%E7%AE%80%E5%8C%96%E6%93%8D%E4%BD%9C%E7%9A%84%E5%B7%A5%E5%85%B7Quicker/%E7%BD%91%E7%AB%99%E9%A6%96%E9%A1%B5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Quicker 一个极大简化操作的工具"/></a><div class="content"><a class="title" href="/2021/03/15/%E4%B8%80%E4%B8%AA%E6%9E%81%E5%A4%A7%E7%AE%80%E5%8C%96%E6%93%8D%E4%BD%9C%E7%9A%84%E5%B7%A5%E5%85%B7Quicker/" title="Quicker 一个极大简化操作的工具">Quicker 一个极大简化操作的工具</a><time datetime="2021-03-15T06:05:03.000Z" title="发表于 2021-03-15 14:05:03">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/10/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9804-Self-Attention/" title="【NLP】Bert中文文本分类实战04-Self-Attention"><img src="/2021/02/10/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9804-Self-Attention/%E5%B0%81%E9%9D%A2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【NLP】Bert中文文本分类实战04-Self-Attention"/></a><div class="content"><a class="title" href="/2021/02/10/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9804-Self-Attention/" title="【NLP】Bert中文文本分类实战04-Self-Attention">【NLP】Bert中文文本分类实战04-Self-Attention</a><time datetime="2021-02-10T12:13:14.000Z" title="发表于 2021-02-10 20:13:14">2021-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/" title="【NLP】Bert中文文本分类实战03-Attention机制"><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/%E5%B0%81%E9%9D%A2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【NLP】Bert中文文本分类实战03-Attention机制"/></a><div class="content"><a class="title" href="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9803-Attention%E6%9C%BA%E5%88%B6/" title="【NLP】Bert中文文本分类实战03-Attention机制">【NLP】Bert中文文本分类实战03-Attention机制</a><time datetime="2021-02-08T08:02:33.000Z" title="发表于 2021-02-08 16:02:33">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/" title="【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论"><img src="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/%E5%B0%81%E9%9D%A2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论"/></a><div class="content"><a class="title" href="/2021/02/08/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9802-RNN-Seq2Seq%E7%90%86%E8%AE%BA/" title="【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论">【NLP】Bert中文文本分类实战02-RNN的变体-Seq2Seq理论</a><time datetime="2021-02-08T02:43:31.000Z" title="发表于 2021-02-08 10:43:31">2021-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/" title="【NLP】Bert中文文本分类实战01-简介（基础理论）"><img src="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/%E5%B0%81%E9%9D%A2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【NLP】Bert中文文本分类实战01-简介（基础理论）"/></a><div class="content"><a class="title" href="/2021/02/06/NLP/Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%98/%E3%80%90NLP%E3%80%91Bert%E4%B8%AD%E6%96%87%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E5%AE%9E%E6%88%9801-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%EF%BC%89/" title="【NLP】Bert中文文本分类实战01-简介（基础理论）">【NLP】Bert中文文本分类实战01-简介（基础理论）</a><time datetime="2021-02-06T13:02:34.000Z" title="发表于 2021-02-06 21:02:34">2021-02-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%91python%E5%9F%BA%E7%A1%80/" title="【深度学习理论与实战】python基础"><img src="/2020/12/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%91python%E5%9F%BA%E7%A1%80/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【深度学习理论与实战】python基础"/></a><div class="content"><a class="title" href="/2020/12/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E3%80%90%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA%E4%B8%8E%E5%AE%9E%E6%88%98%E3%80%91python%E5%9F%BA%E7%A1%80/" title="【深度学习理论与实战】python基础">【深度学习理论与实战】python基础</a><time datetime="2020-12-04T14:21:07.000Z" title="发表于 2020-12-04 22:21:07">2020-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/01/Python/Anaconda/Anaconda%E6%8E%A7%E5%88%B6%E7%9A%84%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%95%9C%E5%83%8F%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Anaconda控制的各种环境以及镜像源的配置"><img src="/2020/12/01/Python/Anaconda/Anaconda%E6%8E%A7%E5%88%B6%E7%9A%84%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%95%9C%E5%83%8F%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/Anaconda3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Anaconda控制的各种环境以及镜像源的配置"/></a><div class="content"><a class="title" href="/2020/12/01/Python/Anaconda/Anaconda%E6%8E%A7%E5%88%B6%E7%9A%84%E5%90%84%E7%A7%8D%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%95%9C%E5%83%8F%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Anaconda控制的各种环境以及镜像源的配置">Anaconda控制的各种环境以及镜像源的配置</a><time datetime="2020-12-01T14:13:04.000Z" title="发表于 2020-12-01 22:13:04">2020-12-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/30/Python/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91Python-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E7%AC%AC3%E7%89%88/" title="【读书笔记】Python 基础教程第3版"><img src="/2020/11/30/Python/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91Python-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E7%AC%AC3%E7%89%88/%E5%B0%81%E9%9D%A2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【读书笔记】Python 基础教程第3版"/></a><div class="content"><a class="title" href="/2020/11/30/Python/%E3%80%90%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E3%80%91Python-%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B%E7%AC%AC3%E7%89%88/" title="【读书笔记】Python 基础教程第3版">【读书笔记】Python 基础教程第3版</a><time datetime="2020-11-30T11:04:44.000Z" title="发表于 2020-11-30 19:04:44">2020-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/30/Python/Anaconda/Anaconda%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Anaconda的安装与使用"><img src="/2020/11/30/Python/Anaconda/Anaconda%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/Anaconda3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Anaconda的安装与使用"/></a><div class="content"><a class="title" href="/2020/11/30/Python/Anaconda/Anaconda%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="Anaconda的安装与使用">Anaconda的安装与使用</a><time datetime="2020-11-30T06:38:00.000Z" title="发表于 2020-11-30 14:38:00">2020-11-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/28/Java%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E3%80%90Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8F%8A%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E3%80%91/%E3%80%905%E3%80%91SQL-JDBC%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/" title="【5】SQL,JDBC与数据库编程"><img src="/2020/11/28/Java%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E3%80%90Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8F%8A%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E3%80%91/%E3%80%905%E3%80%91SQL-JDBC%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8F%8A%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【5】SQL,JDBC与数据库编程"/></a><div class="content"><a class="title" href="/2020/11/28/Java%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/%E3%80%90Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8F%8A%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E3%80%91/%E3%80%905%E3%80%91SQL-JDBC%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/" title="【5】SQL,JDBC与数据库编程">【5】SQL,JDBC与数据库编程</a><time datetime="2020-11-28T13:12:00.000Z" title="发表于 2020-11-28 21:12:00">2020-11-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Zhang Hao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to ZhangHao0810's blog!</div><div class="icp"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/state/outPortal/loginPortal.action"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>鲁ICP备xxxx</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" async="async" mobile="false"></script></div></body></html>
