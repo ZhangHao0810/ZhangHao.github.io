@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>设计模式基础 | 欢迎来到SuperZhang的个人空间</title><meta name="keywords" content="Java，游泳，书法，钢琴"><meta name="author" content="Zhang Hao"><meta name="copyright" content="Zhang Hao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="设计模式设计模式的六大原则单一职责原则一个类，应当只有一个引起它变化的原因；即一个类应该只有一个职责。 就一个类而言，应该只专注于做一件事和仅有一个引起变化的原因，这就是所谓的单一职责原则。该原则提出了对对象职责的一种理想期望，对象不应该承担太多职责，正如人不应该一心分为二用。唯有专注，才能保证对象的高内聚；唯有单一，才能保证对象的细粒度。对象的高内聚与细粒度有利于对象的重用。一个庞大的对象承担了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式基础">
+<meta property="og:url" content="http://example.com/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="欢迎来到SuperZhang的个人空间">
+<meta property="og:description" content="设计模式设计模式的六大原则单一职责原则一个类，应当只有一个引起它变化的原因；即一个类应该只有一个职责。 就一个类而言，应该只专注于做一件事和仅有一个引起变化的原因，这就是所谓的单一职责原则。该原则提出了对对象职责的一种理想期望，对象不应该承担太多职责，正如人不应该一心分为二用。唯有专注，才能保证对象的高内聚；唯有单一，才能保证对象的细粒度。对象的高内聚与细粒度有利于对象的重用。一个庞大的对象承担了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/top_img.jpg">
+<meta property="article:published_time" content="2021-12-20T08:20:18.000Z">
+<meta property="article:modified_time" content="2021-12-20T08:22:06.045Z">
+<meta property="article:author" content="Zhang Hao">
+<meta property="article:tag" content="Java，游泳，书法，钢琴">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/top_img.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Zhang Hao","link":"链接: ","source":"来源: 欢迎来到SuperZhang的个人空间","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '设计模式基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-20 16:22:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top_img.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">欢迎来到SuperZhang的个人空间</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">设计模式基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-20T08:20:18.000Z" title="发表于 2021-12-20 16:20:18">2021-12-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-20T08:22:06.045Z" title="更新于 2021-12-20 16:22:06">2021-12-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="设计模式基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="设计模式的六大原则"><a href="#设计模式的六大原则" class="headerlink" title="设计模式的六大原则"></a>设计模式的六大原则</h2><h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>一个类，应当只有一个引起它变化的原因；即一个类应该只有一个职责。</p>
+<p>就一个类而言，应该只专注于做一件事和仅有一个引起变化的原因，这就是所谓的单一职责原则。该原则提出了对对象职责的一种理想期望，对象不应该承担太多职责，正如人不应该一心分为二用。唯有专注，才能保证对象的高内聚；唯有单一，才能保证对象的细粒度。对象的高内聚与细粒度有利于对象的重用。一个庞大的对象承担了太多的职责，当客户端需要该对象的某一个职责时，就不得不将所有的职责都包含进来，从而造成冗余代码。</p>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>在面向对象的语言中，继承是必不可少的、优秀的语言机制，它主要有以下几个优点：</p>
+<ul>
+<li>代码共享，减少创建类的工作量，每个子类都拥有父类的方法和属性；</li>
+<li>提高代码的可重用性；</li>
+<li>提高代码的可扩展性；</li>
+<li>提高产品或项目的开放性。</li>
+</ul>
+<p>相应的，继承也存在缺点，主要体现在以下几个方面：</p>
+<ul>
+<li>继承是入侵式的。只要继承，就必须拥有父类的所有属性和方法；</li>
+<li>降低代码的灵活性。子类必须拥有父类的属性和方法，使子类受到限制；</li>
+<li>增强了耦合性。当父类的常量、变量和方法修改时，必须考虑子类的修改，这种修改可能造成大片的代码需要重构。</li>
+</ul>
+<p>从整体上看，继承的“利”大于“弊”，然而如何让继承中“利”的因素发挥最大作用，同时减少“弊”所带来的麻烦，这就需要引入“里氏替换原则”。里氏替换原则的定义有以下两种：</p>
+<ul>
+<li>如果对一个类型为S的对象o1，都有类型为T的对象o2，使得以S定义的所有程序P在所有的对象o1都代换成o2时，程序P的行为没有发生变化，那么类型T是类型S的子类型。</li>
+<li>所有引用基类的地方必须能透明地使用其子类对象。清晰明确地说明只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道父类还是子类；但是反过来则不可以，有子类的地方，父类未必就能适应。</li>
+</ul>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>依赖倒置原则包括三种含义：</p>
+<ul>
+<li>高层模块不应该依赖低层模块，两者都依赖其抽象；</li>
+<li>抽象不依赖细节；</li>
+<li>细节应该依赖于抽象。</li>
+</ul>
+<p>传统的过程性系统的设计办法倾向于高层次的模块依赖于低层次的模块；抽象层次依赖于具体层次。“倒置”原则将这个错误的依赖关系倒置了过来，如下图所示，由此命名为“依赖倒置原则”。</p>
+<p><img src="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/design-1.png" alt="img"></p>
+<p>在Java语言中，抽象就是指接口或抽象类，两者都是不能直接被实例化的；细节就是具体的实现类，实现类实现了接口或继承了抽象类，其特点是可以直接被实例化。依赖倒置原则在Java语言中的表现是：</p>
+<ul>
+<li>模块间的依赖通过抽象发生，实现类之间不发生直接的依赖关系，其依赖关系是通过接口或抽象类产生；</li>
+<li>接口或抽象类不依赖于实现类；</li>
+<li>实现类依赖于接口或抽象类。</li>
+</ul>
+<p>依赖倒置原则更加精确的定义就是“面向接口编程”——OOD（Object-Oriented  Design）的精髓之一。依赖倒置原则可以减少类间的耦合性，提高系统的稳定性，降低并行开发引起的风险，提高代码的可读性和可维护性。依赖倒置原则是JavaBean、EJB和COM等组件设计模型背后的基本原则。</p>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>接口隔离原则有如下两种定义：</p>
+<ol>
+<li>客户端不应该依赖它不需要的接口。</li>
+<li>类间的依赖关系应该建立在最小的接口上。</li>
+</ol>
+<p>接口隔离原则的具体含义如下：</p>
+<ul>
+<li>一个类对另外一个类的依赖性应当是建立在最小的接口上的。</li>
+<li>一个接口代表一个角色，不应当将不同的角色都交给一个接口。没有关系的接口合并在一起，形成一个臃肿的大接口，这是对角色和接口的污染。因此使用多个专门的接口比使用单一的总接口要好。</li>
+<li>不应该强迫客户依赖于它们不用的方法。接口属于客户，不属于它所在的类层次结构，即不要强迫客户使用它们不用的方法，否则这些客户就会面临由于这些不使用的方法的改变所带来的改变。</li>
+</ul>
+<h3 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h3><p>迪米特法则又叫最少知识原则，意思是一个对象应当对其他对象尽可能少的了解。迪米特法则不同于其他的OO设计原则，它具有很多种表述方式，其中具有代表性的是以下几种表述：</p>
+<ul>
+<li>只与你直接的朋友们通信；</li>
+<li>不要跟“陌生人”说话；</li>
+<li>每一个软件单位对其他的单位都只有最少的了解，这些了解仅局限于那些与本单位密切相关的软件单位。</li>
+</ul>
+<p>按照迪米特法则，如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用；如果一个类需要调用另一个类的某一个方法，可以通过第三者转发这个调用。</p>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>开闭原则的定义是：一个软件实体应当对扩展开放，对修改关闭。这个原则说的是，在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，即应当可以在不必修改源代码的情况下改变这个模块的行为。</p>
+<p>在面向对象的编程中，开闭原则是最基础的原则，起到总的指导作用，其他原则（单一职责、里氏替换、依赖倒置、接口隔离、迪米特法则）都是开闭原则的具体形态，即其他原则都是开闭原则的手段和工具。开闭原则的重要性可以通过以下几个方面来体现。</p>
+<ul>
+<li>开闭原则提高复用性。在面向对象的设计中，所有的逻辑都是从原子逻辑组合而来的，而不是在一个类中独立实现一个业务逻辑，代码粒度越小，被复用的可能性就越大，避免相同的逻辑重复增加。开闭原则的设计保证系统是一个在高层次上实现了复用的系统。</li>
+<li>开闭原则提高可维护性。一个软件投产后，维护人员的工作不仅仅是对数据进行维护，还可能对程序进行扩展，就是扩展一个类，而不是修改一个类。开闭原则对已有软件模块，特别是最重要的抽象层模块要求不能再修改，这就使变化中的软件系统有一定的稳定性和延续性，便于系统的维护。</li>
+<li>开闭原则提高灵活性。所有的软件系统都有一个共同的性质，即对系统的需求都会随时间的推移而发生变化。在软件系统面临新的需求时，系统的设计必须是稳定的。开闭原则可以通过扩展已有的软件系统，提供新的行为，能快速应对变化，以满足对软件新的需求，使变化中的软件系统有一定的适应性和灵活性。</li>
+<li>开闭原则易于测试。测试是软件开发过程中必不可少的一个环节。测试代码不仅要保证逻辑的正确性，还要保证苛刻条件（高压力、异常、错误）下不产生“有毒代码”（Poisonous  Code），因此当有变化提出时，原有健壮的代码要尽量不修改，而是通过扩展来实现。否则，就需要把原有的测试过程回笼一遍，需要进行单元测试、功能测试、集成测试，甚至是验收测试。开闭原则的使用，保证软件是通过扩展来实现业务逻辑的变化，而不是修改。因此，对于新增加的类，只需新增相应的测试类，编写对应的测试方法，只要保证新增的类是正确的就可以了。</li>
+</ul>
+<h2 id="说一下六大原则中的开闭原则"><a href="#说一下六大原则中的开闭原则" class="headerlink" title="说一下六大原则中的开闭原则"></a>说一下六大原则中的开闭原则</h2><p>开闭原则的定义是：一个软件实体应当对扩展开放，对修改关闭。这个原则说的是，在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，即应当可以在不必修改源代码的情况下改变这个模块的行为。</p>
+<p>在面向对象的编程中，开闭原则是最基础的原则，起到总的指导作用，其他原则（单一职责、里氏替换、依赖倒置、接口隔离、迪米特法则）都是开闭原则的具体形态，即其他原则都是开闭原则的手段和工具。开闭原则的重要性可以通过以下几个方面来体现。</p>
+<ul>
+<li>开闭原则提高复用性。在面向对象的设计中，所有的逻辑都是从原子逻辑组合而来的，而不是在一个类中独立实现一个业务逻辑，代码粒度越小，被复用的可能性就越大，避免相同的逻辑重复增加。开闭原则的设计保证系统是一个在高层次上实现了复用的系统。</li>
+<li>开闭原则提高可维护性。一个软件投产后，维护人员的工作不仅仅是对数据进行维护，还可能对程序进行扩展，就是扩展一个类，而不是修改一个类。开闭原则对已有软件模块，特别是最重要的抽象层模块要求不能再修改，这就使变化中的软件系统有一定的稳定性和延续性，便于系统的维护。</li>
+<li>开闭原则提高灵活性。所有的软件系统都有一个共同的性质，即对系统的需求都会随时间的推移而发生变化。在软件系统面临新的需求时，系统的设计必须是稳定的。开闭原则可以通过扩展已有的软件系统，提供新的行为，能快速应对变化，以满足对软件新的需求，使变化中的软件系统有一定的适应性和灵活性。</li>
+<li>开闭原则易于测试。测试是软件开发过程中必不可少的一个环节。测试代码不仅要保证逻辑的正确性，还要保证苛刻条件（高压力、异常、错误）下不产生“有毒代码”（Poisonous  Code），因此当有变化提出时，原有健壮的代码要尽量不修改，而是通过扩展来实现。否则，就需要把原有的测试过程回笼一遍，需要进行单元测试、功能测试、集成测试，甚至是验收测试。开闭原则的使用，保证软件是通过扩展来实现业务逻辑的变化，而不是修改。因此，对于新增加的类，只需新增相应的测试类，编写对应的测试方法，只要保证新增的类是正确的就可以了。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Zhang Hao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/">http://example.com/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%9F%BA%E7%A1%80/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">欢迎来到SuperZhang的个人空间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/top_img.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"><img class="prev-cover" src="/img/top_img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">单例模式</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E2%98%85%E2%98%85/%E5%90%8E%E7%AB%AF/Spring%E5%AE%B6%E6%97%8F/Spring%20Boot/SpringBoot%E5%92%8CSSM%E7%9A%84%E5%8C%BA%E5%88%AB/"><img class="next-cover" src="/img/top_img.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SpringBoot和SSM的区别</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Zhang Hao</div><div class="author-info__description">网站正在迭代重构中，去粗取精，敬请期待..</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">119</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">45</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ZhangHao0810"><i class="fab fa-github"></i><span>Follow my Github</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">你好呀~欢迎来到我的小世界。记录自己生活工作中遇到的各种问题。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">设计模式的六大原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.2.</span> <span class="toc-text">里氏替换原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.3.</span> <span class="toc-text">依赖倒置原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.4.</span> <span class="toc-text">接口隔离原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="toc-number">1.1.5.</span> <span class="toc-text">迪米特法则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.6.</span> <span class="toc-text">开闭原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99%E4%B8%AD%E7%9A%84%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">说一下六大原则中的开闭原则</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/TCP%E3%80%81HTTP%E3%80%81FTP%E7%9A%84%E5%B1%82%E7%BA%A7/" title="TCP、HTTP、FTP和他们的层级"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCP、HTTP、FTP和他们的层级"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/TCP%E3%80%81HTTP%E3%80%81FTP%E7%9A%84%E5%B1%82%E7%BA%A7/" title="TCP、HTTP、FTP和他们的层级">TCP、HTTP、FTP和他们的层级</a><time datetime="2021-12-20T08:42:10.000Z" title="发表于 2021-12-20 16:42:10">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/" title="网络编程协议的确定"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络编程协议的确定"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%8D%8F%E8%AE%AE/" title="网络编程协议的确定">网络编程协议的确定</a><time datetime="2021-12-20T08:39:45.000Z" title="发表于 2021-12-20 16:39:45">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" title="网络的体系结构"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络的体系结构"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" title="网络的体系结构">网络的体系结构</a><time datetime="2021-12-20T08:34:31.000Z" title="发表于 2021-12-20 16:34:31">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E2%98%85%E2%98%85/%E5%90%8E%E7%AB%AF/Spring%E5%AE%B6%E6%97%8F/Spring/Spring%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="Spring中的设计模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring中的设计模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E2%98%85%E2%98%85/%E5%90%8E%E7%AB%AF/Spring%E5%AE%B6%E6%97%8F/Spring/Spring%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="Spring中的设计模式">Spring中的设计模式</a><time datetime="2021-12-20T08:31:05.000Z" title="发表于 2021-12-20 16:31:05">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="适配器模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="适配器模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%80%82%E9%85%8D%E5%99%A8/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="适配器模式">适配器模式</a><time datetime="2021-12-20T08:30:03.000Z" title="发表于 2021-12-20 16:30:03">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" title="责任链模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="责任链模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" title="责任链模式">责任链模式</a><time datetime="2021-12-20T08:28:50.000Z" title="发表于 2021-12-20 16:28:50">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" title="观察者模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="观察者模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/" title="观察者模式">观察者模式</a><time datetime="2021-12-20T08:27:51.000Z" title="发表于 2021-12-20 16:27:51">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" title="策略模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="策略模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" title="策略模式">策略模式</a><time datetime="2021-12-20T08:26:23.000Z" title="发表于 2021-12-20 16:26:23">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="工厂模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂模式">工厂模式</a><time datetime="2021-12-20T08:24:00.000Z" title="发表于 2021-12-20 16:24:00">2021-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式"><img src="/img/top_img.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="单例模式"/></a><div class="content"><a class="title" href="/2021/12/20/%E6%8A%80%E6%9C%AF%E7%A7%AF%E7%B4%AF/%E2%98%85%E2%98%85%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E2%98%85%E2%98%85/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式">单例模式</a><time datetime="2021-12-20T08:22:26.000Z" title="发表于 2021-12-20 16:22:26">2021-12-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2021 By Zhang Hao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to ZhangHao0810's blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Java,Python,C++,C#,JavaScript,PHP,SQL,Go" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
